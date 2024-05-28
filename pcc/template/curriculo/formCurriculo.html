@@ -1,0 +1,25 @@
+{% extends '_base.html'%}
+{% load static %}
+{% block content %}
+      
+<div class="form-container">
+    <h1>Criação de Currículo</h1>
+    
+    <form action="/curriculo/criar/" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name == 'pcd' %}
+                <div class="checkbox-container">
+                    {{ field }} 
+                    <label for="{{ field.id_for_label }}" class="checkbox-label">{{ field.label }}</label>
+                </div>
+            {% else %}
+                {{ field.label_tag }} {{ field }}
+            {% endif %}
+        {% endfor %}
+        
+        <br>
+        <input type="submit" value="Enviar" class="submit-button">
+    </form>
+</div>
+{% endblock %}

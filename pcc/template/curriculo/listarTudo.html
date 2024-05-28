@@ -1,0 +1,172 @@
+{% extends '_base.html'%}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link href="{% static '/css/styles.css' %}" rel="stylesheet" />
+    <title>Document</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E8F4FF;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #6BC1FF;
+    padding: 10px 20px;
+}
+
+header img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+header h1 {
+    color: white;
+    margin: 0;
+}
+
+nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.container {
+    padding: 20px;
+}
+
+.adicionar {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.add-link {
+    background-color: #6BC1FF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.add-link:hover {
+    background-color: #5aa3d6;
+}
+
+.table {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #6BC1FF;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    font-weight: normal;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.edit-link, .delete-link {
+    background-color: #6BC1FF;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.edit-link:hover, .delete-link:hover {
+    background-color: #5aa3d6;
+}     
+    </style>
+</head>
+<body>
+<div class="adicionar">
+    <a class="add-link" href="/curriculo/criar/">Adicionar</a>
+</div>
+<div class="table">
+<table>
+    
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Idade</th>
+            <th>Endereço</th>
+            <th>Formação</th>
+            <th>Experiência</th>
+            <th>PCD</th>
+            <th>Deficiência</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curriculo in curriculo %}
+        <tr>
+            <td>{{ curriculo.usuario.first_name }}</td>
+            <td>{{ curriculo.usuario.last_name }}</td>
+            <td>{{ curriculo.usuario.idade }}</td>
+            <td>{{ curriculo.usuario.endereco }}</td>
+            <td>{{ curriculo.formacao }}</td>
+            <td>{{ curriculo.experiencia }}</td>
+            {% if curriculo.usuario.pcd %}
+                <td>Tem</td>
+                <td>{{ curriculo.usuario.deficiencia }}</td>
+            {% else %}
+                <td>Pessoa sem deficiência</td>
+                <td>Pessoa sem deficiência</td>
+            {%endif%}
+            <td><a class="edit-link" href="/curriculo/editar/{{curriculo.id}}">Editar</a></td>
+            <td><a class="delete-link" href="/curriculo/deletar/confirmar/{{curriculo.id}}">Excluir</a></td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% load static %}
+{% include '_topbar.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      
+    <link href="{% static '/css/styles.css' %}" rel="stylesheet" />
+    <title>Perfil do Usuário</title>
+</head>
+<style>
+    body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+            }  
+</style>
+<body>
+    <h2>Perfil do Usuário</h2>
+    <ul>
+        <li><strong>Nome de usuário:</strong> {{ usuario.username }}</li>
+        <li><strong>Nome:</strong> {{ usuario.first_name }} {{ usuario.last_name }}</li>
+        <li><strong>Email:</strong> {{ usuario.email }}</li>
+        <li><strong>CPF:</strong> {{ usuario.cpf }}</li>
+        <li><strong>Idade:</strong> {{ usuario.idade }}</li>
+        <li><strong>Endereço:</strong> {{ usuario.endereco }}</li>
+        <li><strong>Sexo:</strong> {{ usuario.sexo }}</li>
+        <li><strong>PcD:</strong> {% if usuario.pcd %} Possui {% else %} Não possui {% endif %}</li>
+        {% if usuario.pcd %}
+            <li><strong>Deficiência:</strong> {{ usuario.deficiencia }}</li>
+        {% endif %}
+    </ul>
+    <a href="/usuario/editar/" class="edit-button">Editar Perfil</a>
+</body>
+</html>
+{%include '_footer.html'%}

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #006400; /* Verde escuro */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espaçamento entre os elementos do formulário */
+        }
+
+        label {
+            color: #333333; /* Cinza escuro */
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-button,
+        .change-password-button {
+            background-color: #006400; /* Verde escuro */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover,
+        .login-button:focus,
+        .change-password-button:hover,
+        .change-password-button:focus {
+            background-color: #004d00; /* Verde mais escuro no hover e foco */
+            outline: 5px solid yellow; /* Marcação amarela no foco */
+        }
+
+        .change-password-button {
+            margin-top: 10px; /* Espaçamento superior para o botão de alterar senha */
+        }
+
+        .create-account-link {
+            color: #006400; /* Verde escuro */
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .create-account-link:hover,
+        .create-account-link:focus {
+            background-color: yellow; /* Fundo amarelo no hover e foco */
+            color: #004d00; /* Texto mais escuro no hover e foco */
+            text-decoration: underline; /* Sublinhado no hover e foco */
+        }
+
+        .create-account-link:active {
+            text-decoration: underline; /* Sublinhado quando clicado */
+        }
+    </style>
+    <title>Tela de Login</title>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>Login</h1>
+        
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+        
+            <input type="submit" value="Login" class="login-button">
+        </form>
+        
+        <p>Esqueceu sua senha? <a href="/accounts/password_reset/" class="create-account-link">Alterar Senha</a></p>
+
+        <p>Não possui uma conta? <a href="/usuario/criar/" class="create-account-link">Criar Conta</a></p>
+    </div>
+
+</body>

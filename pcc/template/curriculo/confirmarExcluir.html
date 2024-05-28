@@ -1,0 +1,91 @@
+{% include '_topbar.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link href="{% static '/css/styles.css' %}" rel="stylesheet" />
+    <title>Confirmação de Exclusão</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .confirmation-container {
+            max-width: 400px;
+            margin: 50px auto;
+            margin-top: 20vh;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .confirmation-container h3 {
+            text-align: center;
+            color: #006400; 
+        }
+
+        .confirmation-container p {
+            margin-bottom: 20px;
+        }
+
+        .confirmation-button {
+            display: inline-block;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .confirmation-button.yes {
+            background-color: #006400;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .confirmation-button.no {
+            background-color: #006400; 
+            color: #fff;
+        }
+        .confirmation-button.no:hover,
+        .confirmation-button.no:focus {
+                background-color: #004d00; 
+                outline: 5px solid yellow; 
+            }
+        .confirmation-button.yes:hover,
+        .confirmation-button.yes:focus {
+                background-color: #004d00; 
+                outline: 5px solid yellow; 
+            }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-container">
+        <h3>Tem certeza que deseja excluir?</h3>
+
+        <p>
+            Nome: {{ curriculo.usuario.first_name }}<br>
+            Sobrenome: {{ curriculo.usuario.last_name }}<br>
+            Idade: {{ curriculo.usuario.idade }}<br>
+            Endereço: {{ curriculo.usuario.endereco }}<br>
+            Formação: {{ curriculo.usuario.formacao }}<br>
+            Experiência: {{ curriculo.usuario.experiencia }}<br>
+            PCD: {{ curriculo.usuario.pcd }}<br>
+            Deficiência: {{ curriculo.usuario.deficiencia }}<br>
+        </p>
+
+        <a href="/curriculo/deletar/{{curriculo.id}}" class="confirmation-button yes">Sim</a>
+        <a href="/curriculo/read/" class="confirmation-button no">Não</a>
+    </div>
+    
+</body>
+</html>
+{% include '_footer.html' %}
