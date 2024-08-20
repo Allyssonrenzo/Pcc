@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg-white-2);
+    margin: 0;
+    padding: 0;
+}
+
+.tudo {
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    background-color: var(--color-bg-white-2);
+    border-radius: 10px;
+    min-height: 350px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--color-text-gray-2);
+    margin-bottom: 30px;
+}
+
+.table {
+    background-color: var(--color-bg-white-1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--color-bg-gray-1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: var(--color-bg-blue-8);
+    color: var(--color-text-white);
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    font-weight: normal;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--color-bg-blue-7);
+}
+
+tbody tr:hover {
+    background-color: var(--color-bg-blue-6);
+}
+
+.cancel-btn {
+    background-color: var(--color-bg-red);
+    color: var(--color-text-white);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cancel-btn:hover {
+    background-color: (--color-text-red);
+}
+
+.message-list {
+    margin-bottom: 20px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.message-list li {
+    background-color: var(--color-bg-green-1);
+    color: var(--color-bg-yellow);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.candidatura {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.vaga {
+    background-color: var(--color-bg-blue-5);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    width: 42%;
+}
+
+.vaga button {
+    align-self: flex-end;
+    background-color: var(--color-bg-blue-2);
+    color: var(--color-text-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.vaga button:hover {
+    background-color: var(--color-bg-blue-1);
+}
+
+.vaga a {
+    text-decoration: none;
+}
+
+.vaga:hover {
+    transform: scale(1.02);
+}
+
+.vaga h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: var(--color-text-blue-1);
+}
+
+.vaga p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: var(--color-text-gray-2);
+}
+
+.vaga .details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.vaga .details p {
+    flex: 1 1 45%;
+    margin-bottom: 10px;
+}   

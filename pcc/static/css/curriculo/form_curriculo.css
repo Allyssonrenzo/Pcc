@@ -1,0 +1,145 @@
+.tudo {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg-gray-1);
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+
+.form-container {
+    background-color: var(--color-bg-blue-5);
+    padding: 20px;
+    padding-top: 15vh;
+    margin: 10vh;
+    width: 90%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+form {
+    width: 100%;
+}
+
+.form-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group-telefone {
+    width: 55%;
+}
+
+.form-group-formacao {
+    width: 55%;
+}
+
+.form-group-experiencia {
+    width: 55%;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"]{
+    margin: 5px 0;
+    border: 1px solid var(--color-bg-gray-1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 55%;
+    height: 5vh;
+}
+
+
+button {
+    background-color: var(--color-bg-white-1);
+    border: 1px solid var(--color-bg-gray-1);
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+    width: 50%;
+    height: 8vh;
+    font-size: large;
+    color: var(--color-text-gray-2);
+}
+
+button:hover {
+    background-color: var(--color-bg-white-2);
+}
+
+button:before {
+    content: '\1F4C4';
+    margin-right: 10px;
+    font-size: x-large;
+}
+
+.pcd-group {
+    display: flex;
+    align-items: center;
+}
+
+.pcd-group label {
+    margin-right: 10px;
+}
+
+.pcd-group input {
+    margin-left: 5px;
+    margin-right: 15px;
+}
+
+.corner-fold {
+    background-color: var(--color-text-blue-2);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-right: 60vw solid transparent;
+    border-top: 97.7vh solid var(--color-bg-gray-1);
+}
+
+.corner-fold2 {
+    background-color: var(--color-text-blue-2);
+    position: absolute;
+    bottom: 68vh;
+    right: 94.6%;
+    width: 0;
+    height: 10;
+    border-right: 5vw solid transparent;
+    border-top: 10vh solid var(--color-bg-gray-1);
+}
+
+.mb-3 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttoncad{
+    width: 30%;
+    margin-top: 30px;
+}

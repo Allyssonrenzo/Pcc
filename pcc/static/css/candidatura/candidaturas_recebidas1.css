@@ -1,0 +1,70 @@
+.container {
+    max-width: 1700px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--color-text-gray-2);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    
+    border: 1px solid var(--color-bg-blue-1);
+}
+
+th {
+    background-color: var(--color-bg-blue-2);
+    color: var(--color-text-white);
+}
+
+tr:nth-child(even) {
+    background-color: var(--color-bg-white-2);
+}
+
+.btn {
+    background-color: var(--color-bg-blue-2);
+    color: var(--color-text-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 7px;
+    width: auto;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--color-bg-blue-1);
+}
+
+.btn-warning {
+    background-color: var(--color-bg-blue-8);
+}
+
+.btn-warning:hover {
+    background-color: var(--color-bg-blue-9);
+}
+
+.btn-danger {
+    background-color: var(--color-bg-red);
+}
+
+.btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+.actions a {
+    margin-right: 10px;
+}

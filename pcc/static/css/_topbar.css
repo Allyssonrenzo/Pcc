@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    background-color: var(--color-bg-blue-3);
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+}
+
+.tab {
+    background: none;
+    border: none;
+    color: var(--color-text-gray-2);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: background-color 0.3s;
+    width: 12%;
+}
+
+.tab:hover {
+    background-color: var(--color-bg-blue-5);
+}
+
+.tab .icon {
+    width: 25px;
+    height: 25px;
+}
+
+.tab .active-icon.hidden {
+    display: none;
+}
+
+.tab.active .default-icon {
+    display: none;
+}
+
+.tab.active .active-icon {
+    display: inline-block;
+}
+
+.tab.active {
+    background-color: var(--color-bg-blue-5);
+    z-index: 1;
+}
+
+.toggle-contrast {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: var(--color-bg-yellow);
+    color: var(--color-text-gray-2);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+body.high-contrast {
+    background-color: var(--color-bg-white-1);
+    color: var(--color-text-white);
+}
+
+body.high-contrast .header {
+    background-color: var(--color-bg-yellow);
+}
+
+body.high-contrast .tab {
+    color: var(--color-text-gray-2);
+}
+
+body.high-contrast .tab.active {
+    background-color: var(--color-bg-yellow);
+    color: var(--color-text-gray-2);
+}

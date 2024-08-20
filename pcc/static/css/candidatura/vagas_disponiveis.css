@@ -1,0 +1,117 @@
+    
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg-white-2);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    background-color: var(--color-bg-white-2);
+    border-radius: 10px;
+    min-height: 350px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--color-text-gray-2);
+    margin-bottom: 30px;
+}
+
+.vaga {
+    background-color: var(--color-bg-blue-5);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    width: 42%;
+    justify-content: center;
+    align-items: center;
+}
+
+.vaga:hover {
+    transform: scale(1.02);
+}
+
+.vaga h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: var(--color-text-blue-1);
+}
+
+.vaga p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: var(--color-text-gray-2);
+}
+
+.vaga .details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.vaga .details p {
+    flex: 1 1 45%;
+    margin-bottom: 10px;
+}
+
+.vaga button {
+    align-self: flex-end;
+    background-color: var(--color-bg-blue-2);
+    color: var(--color-text-white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.vaga button:hover {
+    background-color: var(--color-bg-blue-1);
+}
+
+.vaga a {
+    text-decoration: none;
+}
+
+.candidatura {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+@media (max-width: 600px) {
+    .vaga .details p {
+        flex: 1 1 100%;
+    }
+}
+
+.alert-warning {
+    background-color: var(--color-bg-yellow);
+    border: 1px solid var(--color-bg-yellow-border);
+    color: var(--color-text-brown);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.alert-warning a {
+    color: var(--color-text-brown);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.alert-warning a:hover {
+    text-decoration: underline;
+}

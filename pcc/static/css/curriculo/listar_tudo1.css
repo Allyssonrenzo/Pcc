@@ -1,0 +1,237 @@
+.tudo {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg-gray-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+.form-container {
+    background-color: var(--color-bg-blue-5);
+    padding: 20px;
+    margin: 10vh;
+    width: 90%;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    padding-top: 50px;
+}
+
+.tudo1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vh;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group-telefone {
+    width: 55%;
+}
+
+.form-group-formacao {
+    width: 55%;
+}
+
+.form-group-experiencia {
+    width: 55%;
+}
+
+.form-group-button {
+    width: 50%;
+    display: flex;
+    align-self: flex-end;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    margin: 5px 0;
+    border: 1px solid var(--color-bg-gray-1);
+    background-color: var(--color-bg-white-3);
+    color: var(--color-bg-black);
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 5vh;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+}
+.delete-button:hover {
+    background-color: var(--color-bg-blue-4);
+}
+.edit:hover {
+    background-color: var(--color-bg-blue-4);
+}
+
+
+.botoes a {
+    background-color: var(--color-bg-white-1);
+    border: 1px solid var(--color-bg-gray-1);
+    color: var(--color-bg-black);
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+    width: 50%;
+    height: 8vh;
+    font-size: large;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: var(--color-bg-blue-4);
+}
+
+.botoes a:before {
+    content: '\1F4C4';
+    margin-right: 10px;
+    font-size: x-large;
+}
+
+.corner-fold {
+    background-color: var(--color-text-blue-2);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-right: 60vw solid transparent;
+    border-top: 100vh solid var(--color-bg-gray-1);
+}
+
+.corner-fold2 {
+    background-color: var(--color-text-blue-2);
+    position: absolute;
+    bottom: 75.5vh;
+    right: 94.6%;
+    width: 0;
+    height: 10;
+    border-right: 5vw solid transparent;
+    border-top: 10vh solid var(--color-bg-gray-1);
+}
+
+.img-perfil {
+    width: 100%;
+    height: 10vh;
+    background-color: var(--color-bg-blue-3);
+}
+
+#profile-img {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    background-color: var(--color-bg-transparent);
+}
+
+.profile-picture {
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-content {
+    background-color: var(--color-bg-white-3);
+    color: var(--color-bg-black);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--color-text-gray-1);
+    width: 30%;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.close {
+    color: var(--color-text-gray-1);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--color-text-gray-2);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.confirmation-button {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: var(--color-text-white);         
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 20px;
+}
+
+.confirmation-button.yes {
+    background-color: var(--color-text-red);
+    color: var(--color-bg-black);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.confirmation-button.no {
+    background-color: var(--color-bg-gray-1);
+    color: var(--color-bg-black);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.confirmation-button.yes:hover,
+.confirmation-button.no:hover {
+    transform: scale(1.1);
+    background-color: var(--color-bg-blue-4);
+
+}

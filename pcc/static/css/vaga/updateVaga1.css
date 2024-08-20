@@ -1,0 +1,183 @@
+.tudo {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg-blue-7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+.form-container {
+    background-color: var(--color-bg-blue-5);
+    padding: 20px;
+    padding-top: 15vh;
+    margin: 10vh;
+    width: 90%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+form {
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5vh;
+}
+
+.form-row1 {
+    margin-top: 5vh;
+}
+
+.form-row3 {
+    width: 50%;
+    display: block;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group-funcao {
+    width: 46.7%;
+    left: 51.5%;
+    position: absolute;
+}
+
+.form-group-requisitos {
+    width: 48.7%;
+    margin-right: 5vh;
+}
+
+.form-group-idade {
+    width: 5%;
+}
+
+.form-group-valorsalarial,
+.form-group-cargahoraria {
+    width: 23%;
+    margin-right: 5vh;
+}
+
+.form-group-descricao {
+    width: 48.5%;
+}
+
+.form-group-modelo {
+    margin-top: 5vh;
+    margin-left: 5vh;
+    width: 100%;
+    align-items: center;
+}
+
+.form-group-status {
+    width: 46%;
+    margin-right: 5vh;
+}
+
+.form-group-status select {
+    border: none;
+    height: 5.2vh;
+    border-radius: 10px;    
+    border: 1px solid var(--color-bg-gray-1);
+    background-color: var(--color-bg-white-3);
+    color: var(--color-bg-black);
+}
+
+.input-field {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    margin: 5px 0;
+    border: 1px solid var(--color-bg-gray-1);
+    background-color: var(--color-bg-white-3);
+    color: var(--color-bg-black);
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 5vh;
+    border: none;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+button {
+    background-color: var(--color-text-white);
+    border: 1px solid var(--color-bg-gray-1);
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 8vh;
+    font-size: large;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--color-bg-white-2);
+    color:var(--color-bg-black) ;
+}
+
+.modelo-group {
+    display: flex;
+    align-items: center;
+}
+
+.modelo-group label {
+    margin-right: 10vh;
+}
+
+.modelo-group input {
+    margin-left: 5px;
+    margin-right: 15px;
+}
+
+.corner-fold {
+    background-color: var(--color-bg-blue-33);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-right: 60vw solid transparent;
+    border-top: 100vh solid var(--color-bg-blue-7);
+}
+
+.corner-fold2 {
+    background-color: var(--color-bg-blue-33);
+    position: absolute;
+    bottom: 67.9vh;
+    right: 94.6%;
+    width: 0;
+    height: 10;
+    border-right: 5vw solid transparent;
+    border-top: 10vh solid var(--color-bg-blue-7);
+}

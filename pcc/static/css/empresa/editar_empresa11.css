@@ -1,0 +1,270 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: var(--color-bg-white-2);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: var(--color-bg-black);
+    font-size: 30px;
+    margin: 0;
+}
+
+.nome-container {
+    width: 90%;
+    margin-top: 20px;
+    height: 25%;
+    position: relative;
+}
+
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px;
+    position: absolute;
+    bottom: 20%;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--color-bg-black);
+}
+
+.input-group input {
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: var(--color-bg-white-3);
+    color: var(--color-bg-black);
+    height: 25px;
+    box-shadow: 0 4px 8px var(--color-bg-transparent2);
+}
+
+.profile-picture {
+    width: 90%;
+    height: 42%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7px;
+    border-bottom: 2px var(--color-text-gray-2) solid;
+    border-top: 2px var(--color-text-gray-2) solid;
+}
+
+.a1,
+.a2 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px;
+    height: 90%;
+}
+
+.a1 {
+    border-right: 2px solid var(--color-bg-black);
+}
+
+.caixa1,
+.caixa2 {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.box1 {
+    display: flex;
+    justify-content: center;
+}
+
+.box2 {
+    display: flex;
+    justify-content: center;
+}
+
+.caixa1 label,
+.caixa2 label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--color-bg-black);
+}
+
+.caixa1 input,
+.caixa2 input {
+    width: 80%;
+    padding: 10px;
+    background-color: var(--color-bg-white-3);    
+    color: var(--color-bg-black);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: none;
+    position: relative;
+    top: 20%;
+    height: 25px;
+    box-shadow: 0 4px 8px var(--color-bg-transparent2);
+}
+
+.buttons {
+    width: 93%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10%;
+    margin-top: 30px;
+}
+
+.back-button,
+.update-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 40px;
+    margin-top: 20px;
+    min-width: 100px;
+    width: auto;
+    font-weight: bold;
+    background-color: var(--color-bg-blue-2);
+    color: var(--color-bg-black);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.back-button:hover,
+.update-button:hover {
+    background-color: var(--color-bg-blue-1);
+    transform: scale(1.1);
+}
+
+.delete-button {
+    background-color: var(--color-text-red);
+    color: var(--color-bg-black);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    min-width: 100px;
+    width: auto;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.delete-button:hover {
+    background-color: var(--color-bg-red);
+    transform: scale(1.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-content {
+    background-color: var(--color-bg-white-3);
+    color: var(--color-bg-black);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--color-text-gray-1);
+    width: 30%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close {
+    color: var(--color-bg-gray-1);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--color-bg-black);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    background-color: var(--color-bg-gray-1);
+    color: var(--color-bg-black);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-danger {
+    background-color: var(--color-text-red);
+    color: var(--color-bg-black);
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cancel:hover,
+.btn-danger:hover {
+    transform: scale(1.1);
+}
+
+.field-error {
+    color: var(--color-bg-black);
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.form-error {
+    color: var(--color-bg-black);
+    font-size: 20px;
+    margin-bottom: 20px;
+}   

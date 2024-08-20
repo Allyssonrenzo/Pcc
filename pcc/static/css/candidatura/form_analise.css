@@ -1,0 +1,57 @@
+.form-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--color-bg-transparent2);
+    background-color: var(--color-bg-white-1);
+    height: auto;
+}
+
+h2 {
+    text-align: center;
+    color: var(--color-text-gray-2);
+    margin-bottom: 20px;
+}
+
+.curriculo-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.curriculo-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid var(--color-bg-gray-1);
+}
+
+.curriculo-item:last-child {
+    border-bottom: none;
+}
+
+.curriculo-item strong {
+    color: var(--color-bg-blue-2);
+}
+
+.curriculo-item span {
+    color: var(--color-text-gray-2);
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--color-bg-blue-2);
+    color: var(--color-text-white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--color-bg-blue-1);
+}

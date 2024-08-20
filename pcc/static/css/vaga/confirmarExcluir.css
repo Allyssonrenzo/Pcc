@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.confirmation-container {
+    max-width: 400px;
+    margin: 50px auto;
+    margin-top: 20vh;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-container h3 {
+    text-align: center;
+    color: #006400;
+}
+
+.confirmation-container p {
+    margin-bottom: 20px;
+}
+
+.confirmation-button {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirmation-button.yes {
+    background-color: #006400;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.confirmation-button.no {
+    background-color: #006400;
+    color: #fff;
+}
+
+.confirmation-button.no:hover,
+.confirmation-button.no:focus {
+    background-color: #004d00;
+    outline: 5px solid yellow;
+}
+
+.confirmation-button.yes:hover,
+.confirmation-button.yes:focus {
+    background-color: #004d00;
+    outline: 5px solid yellow;
+}
