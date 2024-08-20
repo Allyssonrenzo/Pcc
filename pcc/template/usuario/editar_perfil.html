@@ -1,0 +1,143 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+{% include '_topbar.html' %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\usuario\editarPerfil.css' %}">
+    <title>Editar Currículo</title>
+</head>
+<body>
+    <div class="tudo">
+
+        <form action="/usuario/editar/{{id_usuario}}" method="POST" class="form">
+            {% csrf_token %}
+            <div class="sessao2">
+                <div class="input-group">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="error">{{ form.first_name.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <div class="error">{{ form.last_name.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="sessao2">
+                <div class="input-group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <div class="error">{{ form.username.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="error">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="sessao3">
+                <div class="input-group">
+                    {{ form.cpf.label_tag }}
+                    {{ form.cpf }}
+                    {% if form.cpf.errors %}
+                        <div class="error">{{ form.cpf.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    {{ form.endereco.label_tag }}
+                    {{ form.endereco }}
+                    {% if form.endereco.errors %}
+                        <div class="error">{{ form.endereco.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="sessao4">
+                <div class="input-group">
+                    {{ form.idade.label_tag }}
+                    {{ form.idade }}
+                    {% if form.idade.errors %}
+                        <div class="error">{{ form.idade.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    {{ form.sexo.label_tag }}
+                    {{ form.sexo }}
+                    {% if form.sexo.errors %}
+                        <div class="error">{{ form.sexo.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="sessao5">
+                <div class="input-group pcd">
+                    {{ form.pcd.label_tag }}
+                    {{ form.pcd }}
+                    {% if form.pcd.errors %}
+                        <div class="error">{{ form.pcd.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    {{ form.deficiencia.label_tag }}
+                    {{ form.deficiencia }}
+                    {% if form.deficiencia.errors %}
+                        <div class="error">{{ form.deficiencia.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="button" class="back-button"><a href="/usuario/perfil/">Voltar</a></button>
+                <button type="submit" class="update-button">Atualizar</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    function updateDeficienciaLabel(checkbox) {
+        var label = document.getElementById('deficiencia-label');
+        if (checkbox.checked) {
+            label.textContent = 'Sim';
+        } else {
+            label.textContent = 'Não';
+        }
+    }
+</script>
+</html>
+
+<script src="{% static 'js/jquery-3.7.1.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script>
+
+    $(document).ready(function () {
+        
+        $("#id_cpf").mask("000.000.000-00");
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+            spOptions = {
+                onKeyPress: function (val, e, field, options) {
+                    field.mask(SPMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+        $('#id_telefone ').mask(SPMaskBehavior, spOptions);
+    });
+
+</script>
+
+{% endblock %}

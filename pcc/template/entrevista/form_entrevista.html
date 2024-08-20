@@ -1,0 +1,100 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/entrevista/form_entrevista.css' %}">
+  <title>Marcar Entrevista</title>
+</head>
+
+<body>
+
+  <div class="form-container">
+    {% if messages %}
+      <ul class="message-list">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %} 
+
+    <h2>{% if form.instance.pk %}Editar{% else %}Marcar{% endif %} Entrevista</h2>
+
+    <form method="post">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        {{ form.data.label_tag }}
+        {{ form.data }}
+        <!-- Exibir erros do campo 'data' -->
+        {% if form.data.errors %}
+        <div class="field-error">
+          {% for error in form.data.errors %}
+          <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.hora.label_tag }}
+        {{ form.hora }}
+        <!-- Exibir erros do campo 'hora' -->
+        {% if form.hora.errors %}
+        <div class="field-error">
+          {% for error in form.hora.errors %}
+          <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.empresa }}
+        <!-- Exibir erros do campo 'empresa' -->
+        {% if form.empresa.errors %}
+        <div class="field-error">
+          {% for error in form.empresa.errors %}
+          <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.candidatura }}
+        <!-- Exibir erros do campo 'candidatura' -->
+        {% if form.candidatura.errors %}
+        <div class="field-error">
+          {% for error in form.candidatura.errors %}
+          <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn">Salvar</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var dateInput = document.getElementById("id_data");
+      dateInput.addEventListener("input", function () {
+        var date = new Date(this.value);
+        if (date.getDay() === 5 || date.getDay() === 6) {
+          alert("Selecione um dia da semana (Segunda a Sexta).");
+          this.value = "";
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
+{% endblock %}

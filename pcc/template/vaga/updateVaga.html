@@ -1,0 +1,80 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css\vaga\updateVaga1.css' %}">
+    <title>Editar Vaga</title>
+</head>
+<body>
+    <div class="tudo">
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-row form-row1">
+                    <div class="form-group-funcao form-group">
+                        <label for="funcao">Função:</label>
+                        {{ form.funcao }}
+                    </div>
+                    <div class="form-group-requisitos form-group">
+                        <label for="requisitos">Requisitos:</label>
+                        {{ form.requisitos }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group-valorsalarial form-group">
+                        <label for="valorsalarial">Valor Salarial:</label>
+                        {{ form.valorSalarial }}
+                    </div>
+                    <div class="form-group form-group-cargahoraria">
+                        <label for="id_cargaHoraria">Carga Horária:</label>
+                        {{ form.cargaHoraria }}
+                    </div>
+                    <div class="form-group-descricao form-group">
+                        <label for="descricao">Descrição:</label>
+                        {{ form.descricao }}
+                    </div>
+                </div>
+                <div class="form-row form-row3">
+                    <div class="form-group-status form-group">
+                        <label for="status">Status:</label>
+                        {{ form.status }}
+                    </div>
+                </div>
+                <div class="form-row" style="justify-content: center;">
+                    <button type="submit">Editar Vaga</button>
+                </div>
+            </form>
+            <div class="corner-fold2"></div>
+        </div>
+        <div class="corner-fold"></div>
+    </div>
+    <script>
+        $(document).ready(function() {
+
+            $('#id_cargaHoraria').mask('00:00', {placeholder: 'HH:MM'});
+        });
+    </script>
+</body>
+</html>
+
+<script src="{% static 'js/jquery-3.7.1.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script>
+
+    $(document).ready(function () {
+        
+        $('#id_valorSalarial').mask('#.##0,00', {reverse: true});
+        $('#id_cargaHoraria').mask('00:00', {placeholder: 'HH:MM'});
+        
+    });
+
+</script>
+
+{% endblock %}

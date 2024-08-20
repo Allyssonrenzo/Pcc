@@ -1,0 +1,167 @@
+{% extends '_base.html'%}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/usuario/registerr.css' %}">  
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sessao1">
+            <div class="par1"></div>
+            <div class="par2">
+                <h1>Cadastre-se</h1>
+            </div>
+            <div class="par3"><img src="{% static 'assets/img/portfolio/logo.png' %}" alt=""></div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-wrapper">
+                <div class="col">
+                    <div class="input-group">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.password1.label_tag }}
+                        <div class="input-senha">
+                            {{ form.password1 }}
+                            <img id="olho" src="https://areacliente.zerouganhou.com.br/public_html/img/eyes.png"
+                                alt="Visualizar Senha">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        {{ form.password2.label_tag }}
+                        <div class="input-senha">
+                            {{ form.password2 }}
+                            <img id="olho2" src="https://areacliente.zerouganhou.com.br/public_html/img/eyes.png"
+                                alt="Visualizar Senha">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col2">
+                    <div class="input-group">
+                        {{ form.cpf.label_tag }}
+                        {{ form.cpf }}
+                        {{ form.cpf.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.endereco.label_tag }}
+                        {{ form.endereco }}
+                        {{ form.endereco.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.idade.label_tag }}
+                        {{ form.idade }}
+                        {{ form.idade.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.sexo.label_tag }}
+                        {{ form.sexo }}
+                        {{ form.sexo.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.pcd.label_tag }}
+                        {{ form.pcd }}
+                        {{ form.pcd.errors }}
+                    </div>
+                    <div class="input-group">
+                        {{ form.deficiencia.label_tag }}
+                        {{ form.deficiencia }}
+                        {{ form.deficiencia.errors }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="sessao3">
+                <button class="butt">Registrar conta</button>
+            </div>
+        </form>
+
+        <div class="sessao4">
+            <a href="/accounts/login">Já possui uma conta? Fazer login</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script src="{% static 'js/jquery-3.7.1.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#id_cpf").mask("000.000.000-00");
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        spOptions = {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+        $('#id_telefone ').mask(SPMaskBehavior, spOptions);
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var senha1 = $('#id_password1');
+        var olho = $("#olho");
+
+        olho.click(function () {
+            if (senha1.attr("type") === "password") {
+                senha1.attr("type", "text");
+                olho.css("opacity", "0.5");
+            } else {
+                senha1.attr("type", "password");
+                olho.css("opacity", "1");
+            }
+        });
+
+        var senha2 = $('#id_password2'); 
+        var olho2 = $("#olho2");
+
+        olho2.click(function () {
+            if (senha2.attr("type") === "password") {
+                senha2.attr("type", "text");
+                olho2.css("opacity", "0.5");
+            } else {
+                senha2.attr("type", "password");
+                olho2.css("opacity", "1");
+            }
+        });
+    });
+</script>
+{% endblock%}

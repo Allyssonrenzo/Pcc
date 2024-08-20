@@ -1,0 +1,247 @@
+{% load static %}
+{% load group_filters %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Vagas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/_basee.css' %}">
+</head>
+
+<body>
+    <div class="redirect">
+        <div class="login">
+            <div class="controls">
+                <a href="#menu" class="xxx">Ir para menu</a>
+                <a href="#conteudo" class="xxx">Ir para conteudo</a>
+                <a href="#rodape" class="xxx">Ir para rodape</a>
+            </div>
+        </div>
+    </div>
+
+    <header id="menu">
+        <div class="logo">
+            <a href="/usuario/home/"><img src="{% static 'assets/img/portfolio/logo.png' %}" alt="Logo"></a>
+        </div>
+        <div class="login">
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+                <a href="#">Menu<i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="/usuario/perfil/">Meu perfil</a>
+                    {% if user|is_usuario %}
+                    <a href="/candidatura/listar/">Minhas Candidaturas</a>
+                    <a href="/curriculo/read/">Meu Currículo</a>
+                    {% endif %}
+                    <a href="/entrevista/listar/">Minhas Entrevistas</a>
+                    {% if user|is_empresa %}
+                    <a href="/empresa/criar/">Cadastrar Empresa</a>
+                    <a href="/empresa/perfil/">Minha Empresa</a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="/usuario/listar_usuarios/">Pedidos de Inscrição de Empresas</a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+            {% endif %}
+            <div class="controls">
+                <a class="toggle-contrast-link" id="contrast-toggle"><span class="fas fa-adjust"></span> Contraste</a>
+                <a class="increase-font" id="increase-font">A+</a>
+                <a class="reset-font" id="reset-font">A</a>
+                <a class="decrease-font" id="decrease-font">A-</a>
+                <a href="/usuario/acessibilidade/" class="decrease-font">Acessibilidade</a>
+            </div>
+            {% if user.is_authenticated %}
+            <a href="#">{{ user.username }} <i class="fas fa-user"></i></a>
+            {% else %}
+            <a href="/accounts/login/">Login</a>
+            <a href="/usuario/criar/">Cadastre-se</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="maincontainer">
+        <main id="conteudo">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer id="rodape">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/usuario/perfil/">Meu perfil</a>
+                    {% if user|is_usuario %}
+                    <a href="/candidatura/listar/">Minhas Candidaturas</a>
+                    <a href="/curriculo/read/">Meu Currículo</a>
+                    {% endif %}
+                    <a href="/entrevista/listar/">Minhas Entrevistas</a>
+                    {% if user|is_empresa %}
+                    <a href="/empresa/criar/">Cadastrar Empresa</a>
+                    <a href="/empresa/perfil/">Minha Empresa</a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="/usuario/listar_usuarios/">Pedidos de Inscrição de Empresas</a>
+                    {% endif %}
+                </div>
+                <p>&copy; 2024 Busca de Vagas. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+<script>
+    const defaultFontSize = 16; 
+    const maxFontSize = 28; 
+    const minFontSize = 12;
+
+    function applyFontSizeToElements(sizeChange) {
+        const elements = document.querySelectorAll('body, body *'); 
+
+        elements.forEach(element => {
+            const computedStyle = window.getComputedStyle(element);
+            const originalFontSize = parseFloat(computedStyle.fontSize);
+            const initialFontSize = parseFloat(element.getAttribute('data-initial-font-size')) || originalFontSize;
+
+            let maxFontSizeForElement = initialFontSize + (maxFontSize - defaultFontSize);
+            let minFontSizeForElement = initialFontSize + (minFontSize - defaultFontSize);
+
+            let newFontSize = originalFontSize + sizeChange;
+
+            if (newFontSize <= maxFontSizeForElement && newFontSize >= minFontSizeForElement) {
+                element.style.fontSize = `${newFontSize}px`;
+            }
+        });
+
+        saveCurrentFontSize();
+    }
+
+    function increaseFontSize() {
+        applyFontSizeToElements(2);
+    }
+
+    function decreaseFontSize() {
+        applyFontSizeToElements(-2);
+    }
+
+    function resetFontSize() {
+        const elements = document.querySelectorAll('body, body *');
+
+        elements.forEach(element => {
+            const initialFontSize = element.getAttribute('data-initial-font-size');
+            if (initialFontSize) {
+                element.style.fontSize = `${initialFontSize}`;  
+            } else {
+                element.style.fontSize = ''; 
+            }
+        });
+
+        localStorage.removeItem('fontSizeAdjustment');
+    }
+
+    function saveCurrentFontSize() {
+        const elements = document.querySelectorAll('body, body *');
+        const fontSizeAdjustment = {};
+
+        elements.forEach(element => {
+            const fontSize = element.style.fontSize || window.getComputedStyle(element).fontSize;
+            fontSizeAdjustment[element.tagName + element.className + element.id] = fontSize;
+        });
+
+        localStorage.setItem('fontSizeAdjustment', JSON.stringify(fontSizeAdjustment));
+    }
+
+    function loadCurrentFontSize() {
+        const fontSizeAdjustment = JSON.parse(localStorage.getItem('fontSizeAdjustment'));
+
+        if (fontSizeAdjustment) {
+            const elements = document.querySelectorAll('body, body *');
+            elements.forEach(element => {
+                const key = element.tagName + element.className + element.id;
+                if (fontSizeAdjustment[key]) {
+                    element.style.fontSize = fontSizeAdjustment[key];
+                }
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const elements = document.querySelectorAll('body, body *');
+
+        elements.forEach(element => {
+            const computedStyle = window.getComputedStyle(element);
+            element.setAttribute('data-initial-font-size', computedStyle.fontSize);
+        });
+
+        loadCurrentFontSize();
+    });
+
+    const isHighContrast = localStorage.getItem('highContrast') === 'true';
+    const contrastToggle = document.getElementById('contrast-toggle');
+
+    if (isHighContrast) {
+        document.documentElement.classList.add('high-contrast');
+    }
+
+    contrastToggle.addEventListener('click', function() {
+        document.documentElement.classList.toggle('high-contrast');
+        const highContrastIsActive = document.documentElement.classList.contains('high-contrast');
+        localStorage.setItem('highContrast', highContrastIsActive);
+    });
+
+    document.getElementById('increase-font').addEventListener('click', increaseFontSize);
+    document.getElementById('decrease-font').addEventListener('click', decreaseFontSize);
+    document.getElementById('reset-font').addEventListener('click', resetFontSize);
+
+    document.addEventListener('keydown', function(event) {
+        if (event.altKey && !event.shiftKey && !event.ctrlKey) {
+            switch (event.key) {
+                case '0':
+                    window.location.href = '/usuario/acessibilidade/';
+                    break;
+                case '1':
+                    window.location.href = '#conteudo';
+                    break;
+                case '2':
+                    window.location.href = '#menu';
+                    break;
+                case '3':
+                    window.location.href = '#rodape';
+                    break;
+                case '4':
+                    window.location.href = '/usuario/home/';
+                    break;
+                case '5':  
+                    document.documentElement.classList.toggle('high-contrast');
+                    const highContrastIsActive = document.documentElement.classList.contains('high-contrast');
+                    localStorage.setItem('highContrast', highContrastIsActive);
+                    break;
+                case '6':  
+                    increaseFontSize();
+                    break;
+                case '7':  
+                    resetFontSize();
+                    break;
+                case '8':  
+                    decreaseFontSize();
+                    break;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

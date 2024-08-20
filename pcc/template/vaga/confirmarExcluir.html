@@ -1,0 +1,32 @@
+{% include '_topbar.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="{% static 'css\vaga\confirmarExcluir.css' %}">  
+    <title>Confirmação de Exclusão</title>
+</head>
+<body>
+
+    <div class="confirmation-container">
+        <h3>Tem certeza que deseja excluir?</h3>
+
+        <p>
+            Requisitos: {{ vaga.requisitos }}<br>
+            Função: {{ vaga.funcao }}<br>
+            Descrição: {{ vaga.descricao }}<br>
+            Stutas: {{ vaga.status }}<br>
+            Valor Salarial: {{ vaga.valorSalarial }}<br>
+            Carga Horária: {{ vaga.cargaHoraria }}<br>
+        </p>
+
+        <a href="/vaga/deletar/{{vaga.id}}" class="confirmation-button yes">Sim</a>
+        <a href="/vaga/listar/" class="confirmation-button no">Não</a>
+    </div>
+    
+</body>
+</html>
+

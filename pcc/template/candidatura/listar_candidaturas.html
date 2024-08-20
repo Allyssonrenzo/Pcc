@@ -1,0 +1,46 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+{% include '_topbar.html' %}    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\candidatura\listar_candidaturas.css' %}">
+    <title>Minhas Candidaturas</title>
+</head>
+<body>
+    <div class="tudo">
+        <h1>Minhas Candidaturas</h1>
+        {% if messages %}
+            <ul class="message-list">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}            
+            <div class="container">
+                <div class="candidatura">
+                    {% for candidatura in candidaturas %}
+                        <div class="vaga">
+                            <div class="details">
+                                <p><strong>Empresa:</strong> {{ candidatura.vaga.empresa.nome }}</p>
+                                <p><strong>Função:</strong> {{ candidatura.vaga.funcao }}</p>
+                                <p><strong>Status:</strong> {{ candidatura.status }}</p>
+                                <p><strong>Data da Candidatura:</strong> {{ candidatura.data_candidatura|date:"d/m/Y H:i" }}</p>
+                            </div>
+                            {% if candidatura.status != 'aprovada' %}
+                                <a href="{% url 'excluir_candidatura' candidatura.id %}">
+                                    <button>Cancelar Candidatura</button>
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

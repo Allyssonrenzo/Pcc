@@ -1,0 +1,113 @@
+{% extends '_base.html'%}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css\empresa\register1.css' %}">
+    <title>Cadastre sua Empresa</title>
+</head>
+<body>
+    <div class="tudo">
+    <div class="container">
+        <div class="sessao1">
+            <div class="par1"></div>
+            <div class="par2"><h1>Cadastre sua empresa</h1></div>
+            <div class="par3"><img src="{% static 'assets/img/portfolio/logo.png' %}    " alt="logo do site"></div>
+        </div>
+
+        <div class="sessao2">
+           
+            <form method="post" action="/empresa/criar/" class="form">
+                {% csrf_token %}
+
+                <!-- Mensagem de erro geral -->
+                {% if form.non_field_errors %}
+                    <div class="form-error">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="{{ form.nome.id_for_label }}">Nome:</label>
+                    {{ form.nome }}
+                    {% if form.nome.errors %}
+                        <div class="error">{{ form.nome.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.cnpj.id_for_label }}">CNPJ:</label>
+                    {{ form.cnpj }}
+                    {% if form.cnpj.errors %}
+                        <div class="error">{{ form.cnpj.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="error">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.endereco.id_for_label }}">Endereço:</label>
+                    {{ form.endereco }}
+                    {% if form.endereco.errors %}
+                        <div class="error">{{ form.endereco.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
+                    {{ form.telefone }}
+                    {% if form.telefone.errors %}
+                        <div class="error">{{ form.telefone.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="sessao3">
+                    <button type="submit" class="butt">Registrar Empresa</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+
+<script src="{% static 'js/jquery-3.7.1.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script>
+
+    $(document).ready(function () {
+        
+        $('#id_cnpj').mask('00.000.000/0000-00');
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+            spOptions = {
+                onKeyPress: function (val, e, field, options) {
+                    field.mask(SPMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+        $('#id_telefone ').mask(SPMaskBehavior, spOptions);
+        
+    });
+
+</script>
+
+
+{% endblock %}

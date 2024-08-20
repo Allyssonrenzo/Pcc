@@ -1,0 +1,59 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\empresa\visualizar_perfill.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+        
+    
+        <div class="container">
+    
+            <div class="nome-container">
+                <div class="input-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" class="nome" name="nome" value="{{ empresa.nome }}" readonly>
+                </div>
+            </div>
+        
+            <div class="profile-picture">
+                <div class="a1">
+                    <div class="caixa1">
+                        <div class="box1"><label for="email">Email</label></div>
+                        <div class="box2"><input type="email" id="email" class="email" name="email" value="{{ empresa.email }}" readonly></div>
+                    </div>
+                    <div class="caixa2">
+                        <div class="box1"><label for="cnpj">CNPJ</label></div>
+                        <div class="box2"><input type="text" id="cnpj" class="cnpj" readonly name="cnpj" value="{{ empresa.cnpj }}"></div>
+                    </div>
+                </div>
+    
+                <div class="a2">
+                    <div class="caixa1">
+                        <div class="box1"><label for="telefone">Telefone</label></div>
+                        <div class="box2"><input type="tel" id="telefone" class="telefone" readonly name="telefone" value="{{ empresa.telefone }}"></div>
+                    </div>
+                    <div class="caixa2">
+                        <div class="box1"><label for="endereco">Endereço</label></div>
+                        <div class="box2"><input type="text" id="endereco" class="endereco" readonly name="endereco" value="{{ empresa.endereco }}"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="buttons">
+                <a href="/usuario/home/" class="back-button">Voltar</a>
+                <a href="/empresa/editar/{{empresa.id}}" class="update-button">Editar</a>
+            </div>
+        </div>
+</body>
+
+</html>
+
+{% endblock %}

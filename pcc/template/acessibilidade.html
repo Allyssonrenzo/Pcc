@@ -1,0 +1,81 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\acessibilidade1.css' %}">
+    <title>Acessibilidade</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="conformidade">
+            <p>Em conformidade com:</p>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm"> <button class="button">✔
+                    Art. 63, §1º, da Lei nº 13.146/2015</button></a>
+
+        </div>
+
+        <h1>Acessibilidade</h1>
+
+        <p>A acessibilidade é um compromisso fundamental do nosso projeto, garantindo que pessoas com deficiências ou
+            mobilidade reduzida possam participar plenamente de todas as atividades, incluindo o acesso a informações,
+            produtos e serviços, como a candidatura a vagas de emprego. Nossa meta é assegurar que todas as pessoas,
+            independentemente de suas condições físicas ou sensoriais, possam navegar e utilizar nossas plataformas de
+            maneira eficiente e sem barreiras.</p>
+
+        <p>Na Internet, acessibilidade envolve a adoção de diretrizes e recomendações do W3C, que visam garantir o
+            acesso universal aos sites, independentemente da presença de qualquer deficiência. Essas diretrizes abrangem
+            aspectos como o tamanho e a cor das fontes, a localização de elementos clicáveis, a facilidade de acesso ao
+            conteúdo e até mesmo os códigos que compõem as páginas (HTML e CSS, entre outros).</p>
+
+        <p>O nosso portal foi desenvolvido com essas recomendações em mente, para que todas as pessoas, com ou sem
+            deficiência, possam utilizá-lo de forma plena. A barra de acessibilidade, localizada acima do menu
+            principal, oferece botões para aumentar ou diminuir o tamanho das fontes, restaurar o tamanho padrão e
+            alterar o contraste de cores, realçando o conteúdo em relação ao fundo da tela. Além disso, o portal conta
+            com atalhos de teclado que facilitam a navegação.</p>
+
+        <p>Essas funcionalidades garantem que qualquer usuário possa candidatar-se a vagas de emprego com mais
+            facilidade, promovendo uma experiência inclusiva e acessível para todos.</p>
+
+        <p>Veja abaixo a listagem de atalhos do sítio:</p>
+
+        <h2>Atalhos de acessibilidade</h2>
+        <ul>
+            <li><strong>ALT + 0</strong> = Redireciona o usuário para a página de acessibilidade</li>
+            <li><strong>ALT + 1</strong> = Redireciona para o conteúdo da página</li>
+            <li><strong>ALT + 2</strong> = Redireciona para o menu principal</li>
+            <li><strong>ALT + 3</strong> = Redireciona para o rodapé</li>
+            <li><strong>ALT + 4</strong> = Redireciona o usuário para a página inicial</li>
+            <li><strong>ALT + 5</strong> = Aplica ou retira o alto contraste</li>
+            <li><strong>ALT + 6</strong> = Aumenta fonte</li>
+            <li><strong>ALT + 7</strong> = Fonte normal</li>
+            <li><strong>ALT + 8</strong> = Diminui fonte</li>
+        </ul>
+
+        <h2>TAMANHO DO TEXTO</h2>
+        <ul>
+            <li><strong>Ctrl + +</strong> Aumenta o zoom da página;</li>
+            <li><strong>Ctrl + -</strong> Diminui o zoom da página;</li>
+            <li><strong>Ctrl + 0</strong> Deixa o zoom da página padrão.</li>
+        </ul>
+
+        <p>
+            Alguns browsers possibilitam a alteração do tamanho do texto da seguinte forma:<br>
+            Internet Explorer: selecione o Menu Opções: "Mostrar: Tamanho do Texto";<br>
+            Mozilla: selecione o Menu Opções: "Mostrar: Tamanho do Texto";<br>
+            Opera: selecione o Menu Opções: "Mostrar Zoom";<br>
+            Safari: selecione o Menu Opções: "Apresentação; Aumentar/Reduzir tamanho do texto".
+        </p>
+
+    </div>
+</body>
+
+
+</html>
+
+{% endblock %}

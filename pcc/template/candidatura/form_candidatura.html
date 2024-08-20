@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\candidatura\form_candidatura.css' %}">
+    <title>Document</title>
+</head>
+<body>    
+    <div class="container">
+    
+        <div class="caixa">
+    
+        <h1>Candidatar-se à Vaga: {{ vaga.funcao }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="button-container">
+                <button type="submit">Candidatar-se</button>
+            </div>
+        </form>
+    
+    </div>
+    </div>
+</body>
+</html>
+{% endblock %}

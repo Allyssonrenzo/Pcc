@@ -1,0 +1,164 @@
+{% extends '_base.html' %}
+{% load group_filters %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css\homepage.css' %}">
+    <title>Document</title>
+
+    <script>
+        function showError(message) {
+            alert(message);
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorParam = urlParams.get('error');
+            if (errorParam === 'sem_empresa') {
+                showError('Você precisa ter uma empresa cadastrada para criar uma vaga.');
+            }
+        });
+
+        function scrollToSection(event) {
+    event.preventDefault();
+
+    const target = document.querySelector('#curriculo-section');
+    const offset = -130; 
+
+    target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+
+    window.setTimeout(() => {
+        window.scrollBy({
+            top: offset, 
+            behavior: 'smooth' 
+        });
+    }, 500); 
+}
+
+    </script>
+</head>
+
+<body>
+
+    <div class="screen-container">
+        <div class="image-container">
+            <div class="BOX">
+                <div class="contato">
+                    <div class="titulo-contato">
+                        <div>CandidAtlas</div>
+                        <div class="bem">Seja bem vindo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% if user|is_usuario %}
+    <div id="curriculo-section" class="BOX-CURRICULO">
+
+        <div class="um">
+
+            <img src="{% static 'assets/img/portfolio/2.png' %}" alt="Imagem de ambiente de trabalho">
+
+        </div>
+
+        <div class="dois">
+
+            <div class="titulo-CURRICULO">
+                <div>CURRÍCULO</div>
+            </div>
+
+            <div class="texto-CURRICULO">Cadastre seu currículo para poder se candidatar a vagas de emprego!</div>
+
+            <div class="conteiner-botao-CURRICULO">
+                <a class="botao-CURRICULO" href="/curriculo/criar/">Cadastre seu currículo</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="cont">
+
+        <div class="testcont">Ferramentas Utilizaveis no Momento</div>
+
+        <div class="testcon2">Ferramentas são adicionadas após o cadastro de uma empresa.</div>
+
+        <div class="ajeitar">
+            <div class="botao">
+                {% if user.empresaRequiredPermission == False %}
+                <img src="{% static 'assets/img/portfolio/1remov.png' %}" alt="">
+                <h1>Fazer Cadastro de Empresa</h1>
+                <form action="{% url 'tenhoInteresse' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="create-button" type="submit">Enviar</button>
+                </form>
+                {% else %}
+                <img src="{% static 'assets/img/portfolio/1remov.png' %}" alt="">
+                <h1>Solicitação enviada, aguarde</h1>
+                {% endif %}
+            </div>
+            <div class="botao">
+
+                <img src="{% static 'assets/img/portfolio/2remov.png' %}" alt="">
+
+                <h1>Buscar oportunidades de emprego?</h1>
+                <a class="create-button" href="{% url 'vagas_disponiveis' %}">Ver Vagas</a>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+    {% if user|is_empresa%}
+
+    <div class="cont">
+
+        <div class="testcont">Ferramentas Utilizaveis no Momento</div>
+
+        <div class="testcon2">Ferramentas Adicionadas para Funcionamento da empresa.</div>
+
+    <div id="curriculo-section" class="caixona">
+
+        <div class="botao">
+            <img src="{% static 'assets/img/portfolio/4remov.png' %}" alt="">
+            <h1>Deseja adicionar uma vaga?</h1>
+            <a class="create-button" href="/vaga/criar/">Criar Vaga</a>
+        </div>
+        <div class="botao">
+            <img src="{% static 'assets/img/portfolio/5remov.png' %}" alt="">
+            <h1>Ver vagas criadas</h1>
+            <a class="create-button" href="/vaga/listar/">Ver</a>
+        </div>
+        <div class="botao">
+            <img src="{% static 'assets/img/portfolio/6remov.png' %}" alt="">
+            <h1>Ver candidatos</h1>
+            <a class="create-button" href="/candidatura/visualizar/">Ver</a>
+        </div>
+
+    </div>
+
+</div>
+    {% endif %}
+
+
+
+    
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!-- entrevista/templates/entrevista/confirmar_exclusao.html -->
+{% extends "_base.html" %}
+{% block content %}
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h2>Confirmar Exclusão</h2>
+    <p>Tem certeza que deseja cancelar a entrevista marcada para {{ entrevista.data }} às {{ entrevista.hora }} com {{ entrevista.usuario.username }}?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Cancelar entrevista</button>
+      <a href="{% url 'listar_entrevistas' %}" class="btn btn-secondary">Voltar</a>
+    </form>
+  </div>
+</body>
+</html>
+{% endblock %}

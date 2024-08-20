@@ -1,0 +1,70 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+{% include '_topbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\curriculo\update_curriculo.css' %}">
+    <title>Editar Currículo</title>
+</head>
+<body>
+    <div class="tudo">
+        <div class="form-container">
+            <form action="/curriculo/editar/{{id_curriculo}}" method="POST">
+                {% csrf_token %}
+                <div class="form-row">                    
+                    <div class="form-group-telefone form-group">
+                        <label for="telefone">Telefone:</label>
+                        {{ form.telefone }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group-formacao form-group">
+                        <label for="formacao">Formação:</label>
+                        {{ form.formacao }}
+                    </div>
+                </div>
+                <div class="form-row">                    
+                    <div class="form-group-experiencia form-group">
+                        <label for="experiencia">Experiência:</label>
+                        {{ form.experiencia }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group-button" style="justify-content: center;">
+                        <button type="submit">Atualizar Currículo</button>
+                    </div>
+                </div>
+            </form>        
+            <div class="corner-fold2"></div>
+        </div>
+        <div class="corner-fold"></div>
+    </div>
+</body>
+</html>
+
+<script src="{% static 'js/jquery-3.7.1.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+            spOptions = {
+                onKeyPress: function (val, e, field, options) {
+                    field.mask(SPMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+        $('#id_telefone ').mask(SPMaskBehavior, spOptions);
+    });
+
+</script>
+
+{% endblock %}

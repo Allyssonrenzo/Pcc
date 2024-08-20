@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+
+{% block content %}
+  <h2>Gerenciar Requisições de Grupo</h2>
+  <ul>
+    {% for request in requests %}
+      <li>
+        {{ request.user.username }} quer mudar para {{ request.new_group.name }}
+        <a href="{% url 'approve_group_request' request.id %}">Aprovar</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

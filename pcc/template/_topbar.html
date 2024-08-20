@@ -1,0 +1,62 @@
+{% load static %}
+{% load group_filters %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\_topbar.css' %}">
+    <title>Cabeçalho</title>
+</head>
+
+{% if user|is_usuario%}
+<body>
+    <div class="header">
+        <a href="/usuario/perfil/" class="tab" id="perfil-tab" data-active-prefixes="/usuario/perfil/,/usuario/editar/">
+            <img src="{% static 'assets/img/portfolio/icons/pessoa.png' %}" alt="Perfil" class="icon default-icon">
+            <img src="{% static 'assets/img/portfolio/icons/pessoa2.png' %}" alt="Perfil Ativo" class="icon active-icon hidden">
+            <span>Perfil</span>
+        </a>
+        <a href="/candidatura/listar/" class="tab" id="candidaturas-tab" data-active-prefixes="/candidatura/listar/,/candidaturas/details/">
+            <img src="{% static 'assets/img/portfolio/icons/mala.png' %}" alt="Candidaturas" class="icon default-icon">
+            <img src="{% static 'assets/img/portfolio/icons/mala2.png' %}" alt="Candidaturas Ativo" class="icon active-icon hidden">
+            <span>Candidaturas</span>
+        </a>
+        <a href="{% url 'vagas_disponiveis' %}" class="tab" id="buscar-vagas-tab" data-active-prefixes="/candidatura/vagas/,/buscar-vagas/details/">
+            <img src="{% static 'assets/img/portfolio/icons/vaga.png' %}" alt="Buscar Vagas" class="icon default-icon">
+            <img src="{% static 'assets/img/portfolio/icons/vaga2.png' %}" alt="Buscar Vagas Ativo" class="icon active-icon hidden">
+            <span>Buscar Vagas</span>
+        </a>
+        <a href="/curriculo/read/" class="tab" id="curriculo-tab" data-active-prefixes="/curriculo/read/,/curriculo/criar/,/curriculo/editar/">
+            <img src="{% static 'assets/img/portfolio/icons/caderno.png' %}" alt="Curriculo" class="icon default-icon">
+            <img src="{% static 'assets/img/portfolio/icons/caderno2.png' %}" alt="Curriculo Ativo" class="icon active-icon hidden">
+            <span>Currículo</span>
+        </a>
+    </div>
+</body>
+{% endif %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.tab');
+        const currentPath = window.location.pathname;
+        const curriculoTab = document.getElementById('curriculo-tab');
+        const toggleContrastBtn = document.getElementById('toggle-contrast');
+
+        tabs.forEach(tab => {
+            const activePrefixes = tab.getAttribute('data-active-prefixes').split(',');
+            const isActive = activePrefixes.some(prefix => currentPath.startsWith(prefix));
+
+            if (isActive) {
+                tab.classList.add('active');
+            }
+        });
+
+        toggleContrastBtn.addEventListener('click', () => {
+            document.body.classList.toggle('high-contrast');
+        });
+    });
+</script>
+
+</html>

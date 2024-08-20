@@ -1,0 +1,57 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+{% include '_topbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="{% static 'css\candidatura\vagas_disponiveis.css' %}">
+    <title>Listar Candidaturas</title>
+    
+</head>
+
+<body>
+    <h1>Vagas Disponíveis</h1>
+    
+    <div class="container">
+        <div class="candidatura">
+            {% for vaga in vagas_disponiveis %}
+            <div class="vaga">
+                <h3> Vaga para {{ vaga.funcao }}</h3>
+                <div class="details">
+                    <p><strong>Empresa:</strong> {{ vaga.empresa.nome }}</p>
+                    <p><strong>Requisitos:</strong> {{ vaga.requisitos }}</p>
+                    <p><strong>Descrição:</strong> {{ vaga.descricao }}</p>
+                    <p><strong>Valor Salarial:</strong> {{ vaga.valorSalarial }}</p>
+                    <p><strong>Carga Horária:</strong> {{ vaga.cargaHoraria }}</p>
+                    <p><strong>Status:</strong> {{ vaga.status }}</p>
+                </div>
+                {% if vaga.status != 'preenchida' %}
+                    {% if vaga.id in vagas_candidatadas %}
+                    <div class="alert alert-warning">Você já se candidatou a essa vaga deseja cancelar candidatura?</div>
+                        <a href="{% url 'listar_candidaturas'%}">
+                            <button>Cancelar Candidatura</button>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'criar_candidatura' vaga.id %}">
+                            <button>Candidatar-se</button>
+                        </a>
+                    {% endif %}
+                {% endif %}
+                {% if not tem_curriculo %}
+                <div class="alert alert-warning">
+                    Você precisa cadastrar um currículo para se candidatar a vagas.
+                    <a href="{% url 'adicionar' %}">Cadastre aqui</a>
+                </div>
+                {%endif%}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
+{% endblock %}

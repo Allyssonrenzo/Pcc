@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Excluir Empresa</h1>
+        <p>Você tem certeza que deseja excluir a empresa "{{ empresa.nome }}"?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="delete-button">Excluir</button>
+            <a href="{% url 'visualizar_perfil_empresa' %}" class="cancel-button">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

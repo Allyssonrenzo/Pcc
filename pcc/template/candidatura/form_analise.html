@@ -1,0 +1,64 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css\candidatura\form_analise.css' %}">
+  <title>Analisar Currículo</title>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Analisar Currículo</h2>
+    <div class="curriculo-details">
+      <div class="curriculo-item">
+        <strong>Nome:</strong>
+        <span>{{ curriculo.usuario.first_name }} {{ curriculo.usuario.last_name }}</span>
+      </div>
+      <div class="curriculo-item">
+        <strong>Telefone:</strong>
+        <span>{{ curriculo.telefone }}</span>
+      </div>
+      <div class="curriculo-item">
+        <strong>Formação:</strong>
+        <span>{{ curriculo.formacao }}</span>
+      </div>
+      <div class="curriculo-item">
+        <strong>Experiência:</strong>
+        <span>{{ curriculo.experiencia }}</span>
+      </div>
+      <div class="curriculo-item">
+        <strong>Email:</strong>
+        <span>{{ curriculo.usuario.email }}</span>
+      </div>
+      <div class="curriculo-item">
+        <strong>Sexo:</strong>
+        <span>{{ curriculo.usuario.sexo }}</span>
+      </div>
+      {% if curriculo.usuario.pcd %}
+        <div class="curriculo-item">
+          <strong>PcD:</strong>
+          <span>Tem</span>
+        </div>
+        <div class="curriculo-item">
+          <strong>Deficiência:</strong>
+          <span>{{ curriculo.usuario.deficiencia }}</span>
+        </div>
+      {% else %}
+        <div class="curriculo-item">
+          <strong>PcD:</strong>
+          <span>Não tem</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <a class="back-button" href="{% url 'visualizar_candidaturas' %}">Voltar</a>
+  </div>
+
+</body>
+
+</html>
+{% endblock %}

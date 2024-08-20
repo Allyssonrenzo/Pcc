@@ -1,0 +1,57 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\candidatura\candidaturas_recebidas1.css' %}">
+    <title>Candidaturas Recebidas</title>
+</head>
+<body>
+    <div class="tudo">
+        {% if messages %}
+            <ul class="message-list">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %} 
+        <div class="container">
+            <h2>Candidaturas Recebidas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Função</th>
+                        <th>Candidato</th>
+                        <th>Status</th>
+                        <th>Data de Candidatura</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for candidatura in candidaturas %}
+                    <tr>
+                        <td>{{ candidatura.vaga.funcao }}</td>
+                        <td>{{ candidatura.usuario.username }}</td>
+                        <td>{{ candidatura.get_status_display }}</td>
+                        <td>{{ candidatura.data_candidatura }}</td>
+                        <td class="actions">
+                            {% if candidatura.status == 'pendente' %}
+                            <a class="btn" href="{% url 'aprovar_candidatura' candidatura.id %}">Aprovar</a>
+                            <a class="btn" href="{% url 'reprovar_candidatura' candidatura.id %}">Reprovar</a>
+                            <a class="btn" href="{% url 'marcar_entrevista' candidatura.id %}">Marcar Entrevista</a>
+                            <a class="btn" href="{% url 'ver_curriculo' candidatura.id %}">Ver Currículo</a>
+                            {% endif %}
+                            <a class="btn" href="{% url 'excluir_candidatura' candidatura.id %}">Excluir</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

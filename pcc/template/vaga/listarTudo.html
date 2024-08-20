@@ -1,0 +1,117 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/vaga/listarTudoo.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="adicionar">
+        <a class="add-link" href="/vaga/criar/">Adicionar</a>
+    </div>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Empresa</th>
+                    <th>Requisitos</th>
+                    <th>Função</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Valor Salarial</th>
+                    <th>Carga Horária</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vaga in vagas %}
+                <tr>
+                    <td>{{ vaga.empresa.nome }}</td>
+                    <td>{{ vaga.requisitos }}</td>
+                    <td>{{ vaga.funcao }}</td>
+                    <td>{{ vaga.descricao }}</td>
+                    <td>{{ vaga.status }}</td>
+                    <td>{{ vaga.valorSalarial }}</td>
+                    <td>{{ vaga.cargaHoraria }}</td>
+                    <td><a class="edit-link" href="/vaga/editar/{{ vaga.id }}">Editar</a></td>
+                    <td><a class="delete-link" href="#" data-id="{{ vaga.id }}" data-requisitos="{{ vaga.requisitos }}"
+                            data-funcao="{{ vaga.funcao }}" data-descricao="{{ vaga.descricao }}"
+                            data-status="{{ vaga.status }}" data-valorSalarial="{{ vaga.valorSalarial }}"
+                            data-cargaHoraria="{{ vaga.cargaHoraria }}">Excluir</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal HTML -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Tem certeza que deseja excluir?</h3>
+            <p id="vaga-details">
+                Requisitos: <span id="modal-requisitos"></span><br>
+                Função: <span id="modal-funcao"></span><br>
+                Descrição: <span id="modal-descricao"></span><br>
+                Status: <span id="modal-status"></span><br>
+                Valor Salarial: <span id="modal-valorSalarial"></span><br>
+                Carga Horária: <span id="modal-cargaHoraria"></span><br>
+            </p>
+            <div class="confirmation-buttons">
+                <a id="confirm-delete" class="confirmation-button yes" href="#">Sim</a>
+                <a class="confirmation-button no" href="/vaga/listar/">Não</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var modal = document.getElementById('confirmationModal');
+        var btns = document.querySelectorAll('.delete-link');
+        var span = document.getElementsByClassName('close')[0];
+        var confirmDelete = document.getElementById('confirm-delete');
+
+        btns.forEach(function (btn) {
+            btn.onclick = function (event) {
+                event.preventDefault();
+                var id = this.getAttribute('data-id');
+                var requisitos = this.getAttribute('data-requisitos');
+                var funcao = this.getAttribute('data-funcao');
+                var descricao = this.getAttribute('data-descricao');
+                var status = this.getAttribute('data-status');
+                var valorSalarial = this.getAttribute('data-valorSalarial');
+                var cargaHoraria = this.getAttribute('data-cargaHoraria');
+
+                document.getElementById('modal-requisitos').textContent = requisitos;
+                document.getElementById('modal-funcao').textContent = funcao;
+                document.getElementById('modal-descricao').textContent = descricao;
+                document.getElementById('modal-status').textContent = status;
+                document.getElementById('modal-valorSalarial').textContent = valorSalarial;
+                document.getElementById('modal-cargaHoraria').textContent = cargaHoraria;
+                confirmDelete.href = '/vaga/deletar/' + id;
+
+                modal.style.display = 'block';
+            };
+        });
+
+        span.onclick = function () {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+
+</html>
+{% endblock %}

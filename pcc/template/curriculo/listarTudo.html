@@ -1,0 +1,101 @@
+{% extends '_base.html'%}
+{% load static %}
+{% block content %}
+{% include '_topbar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\curriculo\listar_tudo1.css' %}">
+    <title>Visualizar Currículos</title>
+</head>
+
+<body>
+    <div class="tudo">
+        <div class="form-container">
+            {% for curriculo in curriculo %}
+            <div class="tudo1">
+                <div class="form-row">
+                    <div class="form-group-telefone form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input type="text" id="telefone" name="telefone" value="{{ curriculo.telefone }}" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group-formacao form-group">
+                        <label for="formacao">Formação:</label>
+                        <input type="text" id="formacao" name="formacao" value="{{ curriculo.formacao }}" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group-experiencia form-group">
+                        <label for="experiencia">Experiência:</label>
+                        <input type="text" id="experiencia" name="experiencia" value="{{ curriculo.experiencia }}"
+                            readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="botoes">
+                        <div class="form-group-button" style="justify-content: center;">
+                            <a href="/curriculo/editar/{{curriculo.id}}" class="edit">Editar Currículo</a>
+                        </div>
+                        <div class="form-group-button" style="justify-content: center;">
+                            <a href="#" class="delete-button" data-id="{{ curriculo.id }}">Excluir Currículo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="corner-fold2"></div>
+        </div>
+        <div class="corner-fold"></div>
+    </div>
+
+    {% for curriculo in curriculo %}
+    <!-- The Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Tem certeza que deseja excluir?</h3>
+            <p id="modalContent">
+                Telefone: {{ curriculo.telefone}}<br>
+                Formação: {{ curriculo.formacao }}<br>
+                Experiência: {{ curriculo.experiencia }}<br>
+            </p>
+            <div class="confirmation-buttons">
+                <a id="confirmDelete" href="#" class="confirmation-button yes">Excluir</a>
+                <a href="/curriculo/read/" class="confirmation-button no">Cancelar</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <script>
+        var modal = document.getElementById("confirmationModal");
+        var span = document.getElementsByClassName("close")[0];
+        var confirmDelete = document.getElementById("confirmDelete");
+        var modalContent = document.getElementById("modalContent");
+
+        document.querySelectorAll(".delete-button").forEach(function (button) {
+            button.onclick = function () {
+                var curriculoId = this.getAttribute("data-id");
+                confirmDelete.href = `/curriculo/deletar/${curriculoId}`;
+                modal.style.display = "block";
+            }
+        });
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
+{% endblock %}

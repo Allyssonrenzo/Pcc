@@ -1,0 +1,105 @@
+{% extends "_base.html" %}
+{% load group_filters %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/entrevista/listar_entrevistas.css' %}">
+    <title>Lista de Entrevistas</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de Entrevistas</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Usuário</th>
+                    <th>Empresa</th>
+                    <th>Candidatura</th>
+                    {% if user|is_empresa %}
+                    <th>Ações</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for entrevista in entrevistas %}
+                <tr>
+                    <td>{{ entrevista.data }}</td>
+                    <td>{{ entrevista.hora }}</td>
+                    <td>{{ entrevista.candidatura.usuario }}</td>
+                    <td>{{ entrevista.empresa }}</td>
+                    <td>{{ entrevista.candidatura }}</td>
+                    {% if user|is_empresa %}
+                    <td>
+                        <a href="{% url 'editar_entrevista' entrevista.id %}" class="btn btn-warning">Remarcar
+                            Entrevista</a>
+                        <button class="btn btn-danger" data-id="{{ entrevista.id }}" data-data="{{ entrevista.data }}"
+                            data-hora="{{ entrevista.hora }}"
+                            data-usuario="{{ entrevista.candidatura.usuario.username }}"
+                            onclick="openModal(this)">Cancelar Entrevista</button>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Confirmar Exclusão</h2>
+            <p id="modal-message">Tem certeza que deseja cancelar a entrevista marcada para ?</p>
+            <form id="confirmForm" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Cancelar entrevista</button>
+                <button type="button" class="btn btn-secondary" onclick="closeTheModal()">Voltar</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        var modal = document.getElementById("confirmModal");
+        var closeButton = document.querySelector(".close");
+        var confirmForm = document.getElementById("confirmForm");
+        var modalMessage = document.getElementById("modal-message");
+    
+        function openModal(button) {
+            var id = button.getAttribute("data-id");
+            var data = button.getAttribute("data-data");
+            var hora = button.getAttribute("data-hora");
+            var usuario = button.getAttribute("data-usuario");
+    
+            modalMessage.innerHTML = `Tem certeza que deseja cancelar a entrevista marcada para ${data} às ${hora} com ${usuario}?`;
+            confirmForm.action = "{% url 'excluir_entrevista' 0 %}".replace("0", id); 
+            modal.style.display = "block";
+        }
+    
+        function closeTheModal() {
+            modal.style.display = 'none';
+        }
+    
+        closeButton.onclick = function () {
+            closeTheModal();
+        }
+    
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeTheModal();
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
+{% endblock %}

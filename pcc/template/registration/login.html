@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css\registration\login.css' %}">
+    <title>Tela de Login</title>
+</head>
+<body>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+      <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+      </script>
+    <div class="container">
+        <div class="image-container">
+            <img src="{% static 'assets\img\portfolio\image.png' %}" alt="ilustração de Login ">
+        </div>
+        <div class="login-container">
+            <div class="login-header">
+                <img src="{% static 'assets\img\portfolio\user-icon.png' %}" alt="icone de Usuário ">
+               <p> Acesse sua conta</p>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="input-group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+                <div class="input-group">
+                    {{ form.password.label_tag }}
+                    <div style="display: flex; align-items: center;">
+                        {{ form.password }}
+                        <img id="olho" src="https://areacliente.zerouganhou.com.br/public_html/img/eyes.png"
+                            alt="Visualizar Senha">
+                    </div>
+                </div>
+                <div class="forgot-password">
+                    <a href="/accounts/password_reset/">Esqueceu sua senha?</a>
+                </div>
+                <button type="submit">Entrar</button>
+                <div class="create-account">
+                    <a href="/usuario/criar/">Criar uma conta</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var senha = $('#id_password');
+        var olho = $("#olho");
+
+        olho.click(function () {
+            if (senha.attr("type") === "password") {
+                senha.attr("type", "text");
+                olho.css("opacity", "0.5");
+            } else {
+                senha.attr("type", "password");
+                olho.css("opacity", "1");
+            }
+        });
+    });
+</script>

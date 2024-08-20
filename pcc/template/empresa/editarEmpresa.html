@@ -1,0 +1,167 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/empresa/editar_empresa11.css' %}">
+    <title>Editar Empresa</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="{% url 'editar_empresa' id_empresa=empresa.id %}" class="form" method="POST">
+            {% csrf_token %}
+
+            <!-- Mensagem de erro geral -->
+            {% if form.non_field_errors %}
+            <div class="form-error">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="nome-container">
+                <div class="input-group">
+                    <label for="id_nome">Nome</label>
+                    {{ form.nome }}
+                    <!-- Erro no campo 'nome' -->
+                    {% if form.nome.errors %}
+                    <div class="field-error">
+                        {% for error in form.nome.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="profile-picture">
+                <div class="a1">
+                    <div class="caixa1">
+                        <div class="box1"><label for="id_email">Email</label></div>
+                        <div class="box2">{{ form.email }}</div>
+                        <!-- Erro no campo 'email' -->
+                        {% if form.email.errors %}
+                        <div class="field-error">
+                            {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="caixa2">
+                        <div class="box1"><label for="id_cnpj">CNPJ</label></div>
+                        <div class="box2">{{ form.cnpj }}</div>
+                        <!-- Erro no campo 'cnpj' -->
+                        {% if form.cnpj.errors %}
+                        <div class="field-error">
+                            {% for error in form.cnpj.errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="a2">
+                    <div class="caixa1">
+                        <div class="box1"><label for="id_telefone">Telefone</label></div>
+                        <div class="box2">{{ form.telefone }}</div>
+                        <!-- Erro no campo 'telefone' -->
+                        {% if form.telefone.errors %}
+                        <div class="field-error">
+                            {% for error in form.telefone.errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="caixa2">
+                        <div class="box1"><label for="id_endereco">Endereço</label></div>
+                        <div class="box2">{{ form.endereco }}</div>
+                        <!-- Erro no campo 'endereco' -->
+                        {% if form.endereco.errors %}
+                        <div class="field-error">
+                            {% for error in form.endereco.errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <a href="/usuario/home/" class="back-button">Voltar</a>
+                <button type="submit" class="update-button">Atualizar</button>
+                <a href="" class="delete-button">Excluir</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Excluir Empresa</h2>
+            <p>Você tem certeza que deseja excluir a empresa "{{ empresa.nome }}"?</p>
+            <form action="{% url 'excluir_empresa' %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-danger">Excluir Empresa</button>
+                </div>
+            </form>
+            <button type="button" class="btn-cancel">Cancelar</button>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="{% static 'js/jquery-3.7.1.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#id_cnpj').mask('00.000.000/0000-00');
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+            spOptions = {
+                onKeyPress: function (val, e, field, options) {
+                    field.mask(SPMaskBehavior.apply({}, arguments), options);
+                }
+            };
+
+        $('#id_telefone').mask(SPMaskBehavior, spOptions);
+    });
+
+    var modal = document.getElementById("deleteModal");
+    var deleteButton = document.querySelector(".delete-button");
+    var closeModal = document.querySelector(".close");
+    var cancelBtn = document.querySelector(".btn-cancel");
+
+    deleteButton.onclick = function (event) {
+        event.preventDefault();
+        modal.style.display = "block";
+    }
+
+    closeModal.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    cancelBtn.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+{% endblock %}

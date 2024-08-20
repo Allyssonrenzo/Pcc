@@ -1,0 +1,151 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+{% include '_topbar.html' %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/usuario/visualizarPerfill.css' %}">
+    <title>Meu Perfil</title>
+</head>
+
+<body>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Excluir Conta</h2>
+            <form method="post">
+                {% csrf_token %}                
+                <div class="input-senha">
+                    {{ form.senha.label_tag }}
+                    <div class="senha">
+                        {{ form.senha }}
+                        <img id="olho" src="https://areacliente.zerouganhou.com.br/public_html/img/eyes.png"
+                            alt="Visualizar Senha">
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-danger">Excluir Conta</button>
+                    <button type="button" class="btn-cancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="form">
+            <div class="sessao2">
+                <div class="input-group">
+                    <label for="first-name">Nome</label>
+                    <input type="text" id="first-name" name="first-name" readonly class="first-name"
+                        value="{{ usuario.first_name }}">
+                </div>
+                <div class="input-group">
+                    <label for="last-name">Sobrenome</label>
+                    <input type="text" id="last-name" name="last-name" readonly class="last-name"
+                        value="{{ usuario.last_name }}">
+                </div>
+            </div>
+            <div class="sessao2">
+                <div class="input-group">
+                    <label for="username">Nome de Usuário</label>
+                    <input type="text" id="username" name="username" readonly class="username"
+                        value="{{ usuario.username }}">
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" readonly class="email" value="{{ usuario.email }}">
+                </div>
+            </div>
+            <div class="sessao3">
+                <div class="input-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" name="cpf" readonly class="cpf" value="{{ usuario.cpf }}">
+                </div>
+                <div class="input-group">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" id="endereco" name="endereco" readonly class="endereco"
+                        value="{{ usuario.endereco }}">
+                </div>
+            </div>
+            <div class="sessao4">
+                <div class="input-group">
+                    <label for="idade">Idade</label>
+                    <input type="text" id="idade" name="idade" readonly class="idade" value="{{ usuario.idade }}">
+                </div>
+                <div class="input-group">
+                    <label for="sexo">Sexo</label>
+                    <input type="text" id="sexo" name="sexo" readonly class="sexo" value="{{ usuario.sexo }}">
+                </div>
+            </div>
+            <div class="sessao5">
+                <div class="input-group">
+                    <label for="deficiencia">PcD</label>
+                    <input type="text" id="deficiencia" name="deficiencia" readonly class="deficiencia"
+                        value="{% if usuario.pcd %}Sim{% else %}Não{% endif %}">
+                </div>
+                <div class="input-group">
+                    <label for="explicacao">Deficiência</label>
+                    <input type="text" id="explicacao" name="explicacao" readonly class="explicacao"
+                        value="{{ usuario.deficiencia }}">
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button" class="back-button"><a href="/usuario/home/">Voltar</a></button>
+            <button type="button" class="update-button"><a href="/usuario/editar/">Editar</a></button>
+            <button type="button" class="delete-button update-buttonn">Excluir minha conta</button>
+        </div>
+    </div>
+
+    
+
+    <script>
+        var modal = document.getElementById("deleteModal");
+        var deleteButton = document.querySelector(".delete-button");
+        var closeModal = document.querySelector(".close");
+        var cancelBtn = document.querySelector(".btn-cancel");
+
+        deleteButton.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        closeModal.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        cancelBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var senha = $('#id_senha'); 
+            var olho = $("#olho");
+    
+            olho.click(function () {
+                if (senha.attr("type") === "password") {
+                    senha.attr("type", "text");
+                    olho.css("opacity", "0.5");
+                } else {
+                    senha.attr("type", "password");
+                    olho.css("opacity", "1");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+{% endblock %}
